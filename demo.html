@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="description" content="">
+		<meta name="designer" content="">
+		<meta name="developer" content="">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<!-- Add "maximum-scale=1" to fix the weird iOS auto-zoom bug on orientation changes. -->
+
+		<title></title>
+
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<link rel="shortcut icon" href="">
+		<style type="text/css">
+			div#demo-box { width: 100px; height: 100px; background: #f00; }
+		</style>
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<script src="storyboard.js"></script>
+		<script>
+			$(document).ready(function() {
+				function animateBox() {
+					$.storyboard([
+						function(dfr) {
+							$('#demo-box').animate({
+								width: 300,
+								height: 300
+							}, 300, dfr.resolve);
+						},
+						500,
+						function(dfr) {
+							$('#demo-box').animate({
+								marginLeft: 300,
+								marginTop: 300
+							}, 600, dfr.resolve);
+						},
+						500,
+						function(dfr) {
+							$('#demo-box').animate({
+								width: 100,
+								height: 100,
+								marginLeft: 0,
+								marginTop: 0
+							}, 600, dfr.resolve);
+						},
+						1000,
+						function(dfr) {
+							dfr.resolve();
+							animateBox();
+						}
+					]);
+				}
+
+				animateBox();
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="demo-box"></div>
+	</body>
+</html>
